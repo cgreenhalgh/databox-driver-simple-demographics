@@ -40,7 +40,7 @@ const keys = ['name','yearofbirth','sex'];
 var values = {};
 
 app.get('/ui', function(req, res) {
-	console.log('serving ui');
+	//console.log('serving ui');
 	if ('active'==status)
 		res.render('index', { values });
 	else
@@ -54,7 +54,8 @@ app.post('/ui/set-values', function(req, res){
 		if (keys.indexOf(key)>=0) {
 			const value = req.body[key]
 			values[key] = value;
-			databox.keyValue.write(STORE_ENDPOINT, key, JSON.stringify(value))
+			// do we really need to wrap the value in an object?
+			databox.keyValue.write(STORE_ENDPOINT, key, { value: value })
 			.then(() => {
 				console.log('wrote '+key+' = '+value);
 			})
@@ -95,9 +96,11 @@ databox.waitForStoreStatus(STORE_ENDPOINT,'active')
 			.then((value) => {
 				if (value.status && value.status!=200) {
 					console.error('Error reading existing value '+key+': '+JSON.stringify(value));
+				} else if (value.value) {
+					console.log('Read existing value '+key+': '+JSON.stringify(value));
+					values[key] = value.value;
 				} else {
-					console.log('Read existing value '+key+': '+JSON.stringify(value))
-					values[key] = value;
+					console.log('Read unexpected value for '+key+': '+JSON.stringify(value));
 				}
 			});
 			
