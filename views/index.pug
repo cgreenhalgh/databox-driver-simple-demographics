@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+	head
+		title Databox Simple Demographics Driver
+		script(src='ui/jquery-3.2.0.min.js')
+		script.
+			$(document).ready(function() {
+				$('#submit').click(function(e) {
+					$('#submit').prop('disabled', true);
+					$.post('ui/set-values', { name: $('#name').val(), sex: $('#sex').val(), yearofbirth: $('#yearofbirth').val() }, () => window.location.reload());
+				});
+			});
+		style.
+			p, ul {
+				margin: 0;
+			}
+			.indent {
+				margin-left: 1em;
+			}
+	body
+		h1 Databox Simple Demographics Driver
+		form#form: table: tbody
+			tr: td name
+				td: input#name(type='text', placeholder='name', value=(values.name ? values.name : ''))
+			tr: td year of birth
+				td: input#yearofbirth(type='number', placeholder='year of birth', value=(values.yearofbirth ? values.yearofbirth : ''))
+			tr: td sex
+				td: select#sex
+					option(default, value='') Not specified
+					option(value='m', selected= values.sex=='m') Male
+					option(value='f', selected= values.sex=='f') Female
+			tr: td
+				td: button#submit Submit			

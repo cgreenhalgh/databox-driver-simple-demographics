@@ -1,28 +1,34 @@
 {
-  "name": "databox-driver-template-node",
+  "name": "databox-driver-simple-demographics",
   "version": "0.1.0",
-  "description": "A template Databox driver in Node.js",
+  "description": "A simple Databox driver in Node.js which allows the user to store simple demographic information",
+  "config": {
+    "databox-registry": "localhost:5000"
+  },
   "scripts": {
     "start": "node main.js",
-    "publish": "docker build -t databox-driver-template-node . && docker tag databox-driver-template-node localhost:5000/databox-driver-template-node && docker push localhost:5000/databox-driver-template-node"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "docker build -t $npm_package_name .",
+    "release": "docker tag $npm_package_name $npm_package_config_databox_registry/$npm_package_name && docker push $npm_package_config_databox_registry/$npm_package_name"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yousefamar/databox-driver-template-node.git"
+    "url": "git+https://github.com/yousefamar/databox-driver-simple-demographics.git"
   },
   "keywords": [
-    "template",
     "driver",
-    "mock",
     "nodejs"
   ],
-  "author": "Yousef Amar <yousef@amar.io> (http://yousefamar.com/)",
+  "author": "Chris Greenhalgh <chris.greenhalgh@nottingham.ac.uk>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yousefamar/databox-driver-template-node/issues"
+    "url": "https://github.com/yousefamar/databox-driver-simple-demographics/issues"
   },
-  "homepage": "https://github.com/yousefamar/databox-driver-template-node#readme",
+  "homepage": "https://github.com/yousefamar/databox-driver-simple-demographics#readme",
   "dependencies": {
-    "node-databox": "^0.1.0"
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "pug": "^2.0.0-beta11",
+    "node-databox": "^0.3.0"
   }
 }

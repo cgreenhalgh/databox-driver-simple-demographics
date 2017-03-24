@@ -1,45 +1,30 @@
 {
 	"manifest-version": 1,
 
-	"name": "databox-driver-template-node",
+	"name": "databox-driver-simple-demographics",
 	"databox-type": "driver",
 	"version": "0.1.0",
 
-	"description": "A template Databox driver in Node.js",
-	"author": "Yousef Amar <yousef@amar.io> (http://yousefamar.com/)",
+	"description": "A simple Databox driver in Node.js which allows the user to store simple demographic information",
+	"author": "Chris Greenhalgh <chris.greenhalgh@nottingham.ac.uk>",
 	"license": "MIT",
 	"tags": [
-		"template",
 		"driver",
-		"mock",
 		"nodejs"
 	],
 
-	"homepage": "https://github.com/me-box/databox-driver-template-node",
+	"homepage": "https://github.com/cgreenhalgh/databox-driver-simple-demographics",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/me-box/databox-driver-template-node"
+		"url": "git+https://github.com/cgreenhalgh/databox-driver-simple-demographics"
 	},
 
 	"packages": [
-		{
-			"name": "Store read and write",
-			"purpose": "",
-			"install": "required",
-			"risk": "",
-			"benefits": "",
-			"datastores": [ "test" ]
-		}
 	],
+
 	"allowed-combinations": [],
+
 	"datasources": [
-		{
-			"type": "test",
-			"required": true,
-			"name": "test",
-			"clientid": "test",
-			"granularities": []
-		}
 	],
 
 	"resource-requirements": {
